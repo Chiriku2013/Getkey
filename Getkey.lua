@@ -25,10 +25,10 @@ main.BorderSizePixel = 0
 Instance.new("UICorner", main)
 
 -- Nút Get Key
-local getKeyBtn = Instance.new("TextButton", gui)
+local getKeyBtn = Instance.new("TextButton", main)
 getKeyBtn.Text = "Get Key"
 getKeyBtn.Size = UDim2.new(0, 120, 0, 35)
-getKeyBtn.Position = UDim2.new(0.5, -125, 0.5, -100)
+getKeyBtn.Position = UDim2.new(0.5, -125, 0.5, -50)
 getKeyBtn.AnchorPoint = Vector2.new(0.5, 1)
 getKeyBtn.BackgroundColor3 = Color3.fromRGB(0, 140, 255)
 getKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -37,10 +37,10 @@ getKeyBtn.TextSize = 16
 Instance.new("UICorner", getKeyBtn)
 
 -- Nút Check Key
-local checkBtn = Instance.new("TextButton", gui)
+local checkBtn = Instance.new("TextButton", main)
 checkBtn.Text = "Check Key"
 checkBtn.Size = UDim2.new(0, 120, 0, 35)
-checkBtn.Position = UDim2.new(0.5, 125, 0.5, -100)
+checkBtn.Position = UDim2.new(0.5, 125, 0.5, -50)
 checkBtn.AnchorPoint = Vector2.new(0.5, 1)
 checkBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
 checkBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -61,15 +61,15 @@ title.AnchorPoint = Vector2.new(0.5, 0)
 
 -- Left ImageLabel
 local leftImage = Instance.new("ImageLabel", main)
-leftImage.Size = UDim2.new(0, 30, 0, 30)
+leftImage.Size = UDim2.new(0, 50, 0, 50)  -- Size đã được tăng
 leftImage.Position = UDim2.new(0, 5, 0, 5)
 leftImage.Image = "rbxassetid://119198835819797" -- Đã thay thế ID hình ảnh
 leftImage.BackgroundTransparency = 1
 
 -- Right ImageLabel
 local rightImage = Instance.new("ImageLabel", main)
-rightImage.Size = UDim2.new(0, 30, 0, 30)
-rightImage.Position = UDim2.new(1, -35, 0, 5)
+rightImage.Size = UDim2.new(0, 50, 0, 50)  -- Size đã được tăng
+rightImage.Position = UDim2.new(1, -55, 0, 5)
 rightImage.Image = "rbxassetid://119198835819797" -- Đã thay thế ID hình ảnh
 rightImage.BackgroundTransparency = 1
 
