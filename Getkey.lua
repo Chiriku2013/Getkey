@@ -4,7 +4,6 @@ local TweenService = game:GetService("TweenService")
 local StarterGui = game:GetService("StarterGui")
 local player = Players.LocalPlayer
 
--- Notify khi vào game
 StarterGui:SetCore("SendNotification", {
     Title = "Get Key",
     Text = "Get key để sử dụng",
@@ -12,22 +11,42 @@ StarterGui:SetCore("SendNotification", {
 })
 
 --// UI
-local keySystem = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-keySystem.Name = "KeySystem"
-keySystem.ResetOnSpawn = false
+local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+gui.Name = "KeySystem"
+gui.ResetOnSpawn = false
 
-local main = Instance.new("Frame", keySystem)
-main.Size = UDim2.new(0.3, 0, 0.35, 0)
-main.Position = UDim2.new(0.5, 0, 0.42, 0)
+-- Nền chính
+local main = Instance.new("Frame", gui)
+main.Size = UDim2.new(0, 350, 0, 180)
+main.Position = UDim2.new(0.5, 0, 0.5, 20)
 main.AnchorPoint = Vector2.new(0.5, 0.5)
 main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 main.BorderSizePixel = 0
-Instance.new("UICorner", main).CornerRadius = UDim.new(0, 10)
+Instance.new("UICorner", main)
 
--- Tween hiện ra mượt
-TweenService:Create(main, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-    Position = UDim2.new(0.5, 0, 0.55, 0)
-}):Play()
+-- Nút Get Key
+local getKeyBtn = Instance.new("TextButton", gui)
+getKeyBtn.Text = "Get Key"
+getKeyBtn.Size = UDim2.new(0, 120, 0, 35)
+getKeyBtn.Position = UDim2.new(0.5, -125, 0.5, -100)
+getKeyBtn.AnchorPoint = Vector2.new(0.5, 1)
+getKeyBtn.BackgroundColor3 = Color3.fromRGB(0, 140, 255)
+getKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+getKeyBtn.Font = Enum.Font.SourceSansBold
+getKeyBtn.TextSize = 16
+Instance.new("UICorner", getKeyBtn)
+
+-- Nút Check Key
+local checkBtn = Instance.new("TextButton", gui)
+checkBtn.Text = "Check Key"
+checkBtn.Size = UDim2.new(0, 120, 0, 35)
+checkBtn.Position = UDim2.new(0.5, 125, 0.5, -100)
+checkBtn.AnchorPoint = Vector2.new(0.5, 1)
+checkBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+checkBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+checkBtn.Font = Enum.Font.SourceSansBold
+checkBtn.TextSize = 16
+Instance.new("UICorner", checkBtn)
 
 -- Title
 local title = Instance.new("TextLabel", main)
@@ -37,6 +56,22 @@ title.BackgroundTransparency = 1
 title.TextColor3 = Color3.fromRGB(255, 255, 0)
 title.Font = Enum.Font.SourceSansBold
 title.TextSize = 24
+title.Position = UDim2.new(0.5, 0, 0, 5)
+title.AnchorPoint = Vector2.new(0.5, 0)
+
+-- Left ImageLabel
+local leftImage = Instance.new("ImageLabel", main)
+leftImage.Size = UDim2.new(0, 30, 0, 30)
+leftImage.Position = UDim2.new(0, 5, 0, 5)
+leftImage.Image = "rbxassetid://119198835819797" -- Đã thay thế ID hình ảnh
+leftImage.BackgroundTransparency = 1
+
+-- Right ImageLabel
+local rightImage = Instance.new("ImageLabel", main)
+rightImage.Size = UDim2.new(0, 30, 0, 30)
+rightImage.Position = UDim2.new(1, -35, 0, 5)
+rightImage.Image = "rbxassetid://119198835819797" -- Đã thay thế ID hình ảnh
+rightImage.BackgroundTransparency = 1
 
 -- Info
 local info = Instance.new("TextLabel", main)
@@ -49,7 +84,7 @@ info.Font = Enum.Font.SourceSans
 info.TextSize = 16
 info.TextWrapped = true
 
--- TextBox
+-- Nhập key
 local keyBox = Instance.new("TextBox", main)
 keyBox.PlaceholderText = "Enter your key here"
 keyBox.Size = UDim2.new(1, -20, 0, 30)
@@ -60,40 +95,18 @@ keyBox.TextSize = 16
 keyBox.Font = Enum.Font.SourceSans
 Instance.new("UICorner", keyBox)
 
--- Get Key Button
-local getKeyBtn = Instance.new("TextButton", main)
-getKeyBtn.Text = "Get Key"
-getKeyBtn.Size = UDim2.new(0.45, -10, 0, 30)
-getKeyBtn.Position = UDim2.new(0, 10, 0, 120)
-getKeyBtn.BackgroundColor3 = Color3.fromRGB(0, 140, 255)
-getKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-getKeyBtn.TextSize = 16
-getKeyBtn.Font = Enum.Font.SourceSansBold
-Instance.new("UICorner", getKeyBtn)
-
--- Check Key Button
-local checkBtn = Instance.new("TextButton", main)
-checkBtn.Text = "Check Key"
-checkBtn.Size = UDim2.new(0.45, -10, 0, 30)
-checkBtn.Position = UDim2.new(0.55, 0, 0, 120)
-checkBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
-checkBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-checkBtn.TextSize = 16
-checkBtn.Font = Enum.Font.SourceSansBold
-Instance.new("UICorner", checkBtn)
-
--- Label hiện dưới
+-- Label dưới
 local keyLabel = Instance.new("TextLabel", main)
 keyLabel.Text = ""
 keyLabel.Size = UDim2.new(1, -20, 0, 20)
-keyLabel.Position = UDim2.new(0, 10, 0, 160)
+keyLabel.Position = UDim2.new(0, 10, 0, 120)
 keyLabel.BackgroundTransparency = 1
 keyLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyLabel.TextSize = 14
 keyLabel.Font = Enum.Font.SourceSans
 keyLabel.Visible = false
 
--- Hover animation
+-- Hover
 for _, btn in pairs({getKeyBtn, checkBtn}) do
 	btn.MouseEnter:Connect(function()
 		TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundTransparency = 0.1}):Play()
@@ -103,45 +116,46 @@ for _, btn in pairs({getKeyBtn, checkBtn}) do
 	end)
 end
 
--- Key đúng
+-- Check key
 local correctKey = "ChirikuNigga"
-
--- Check Key
 local debounce = false
+
 checkBtn.MouseButton1Click:Connect(function()
 	if debounce then return end
 	debounce = true
 
-	local userKey = keyBox.Text
-	if userKey == correctKey then
+	if keyBox.Text == correctKey then
 		StarterGui:SetCore("SendNotification", {
 			Title = "Key đúng",
-			Text = "Cảm ơn vì đã get key :3",
+			Text = "Cảm ơn vì đã get key!",
 			Duration = 5
 		})
-		main:Destroy()
+		gui:Destroy()
 		loadstring("print('Chạy script chính ở đây')")()
 	else
 		StarterGui:SetCore("SendNotification", {
 			Title = "Key sai",
-			Text = "Hãy get key lại",
+			Text = "Vui lòng kiểm tra lại!",
 			Duration = 5
 		})
-		local shake1 = TweenService:Create(main, TweenInfo.new(0.05), {Position = main.Position + UDim2.new(0, -10, 0, 0)})
-		local shake2 = TweenService:Create(main, TweenInfo.new(0.05), {Position = main.Position + UDim2.new(0, 10, 0, 0)})
-		local resetPos = TweenService:Create(main, TweenInfo.new(0.05), {Position = main.Position})
+
+		local orig = main.Position
+		local shake1 = TweenService:Create(main, TweenInfo.new(0.05), {Position = orig + UDim2.new(0, -10, 0, 0)})
+		local shake2 = TweenService:Create(main, TweenInfo.new(0.05), {Position = orig + UDim2.new(0, 10, 0, 0)})
+		local reset = TweenService:Create(main, TweenInfo.new(0.05), {Position = orig})
 		shake1:Play()
 		shake1.Completed:Wait()
 		shake2:Play()
 		shake2.Completed:Wait()
-		resetPos:Play()
+		reset:Play()
 	end
+
 	debounce = false
 end)
 
--- Get Key
+-- Get key
 getKeyBtn.MouseButton1Click:Connect(function()
-	keyLabel.Text = "Link đã được copy!"
+	keyLabel.Text = "Link đã copy!"
 	keyLabel.Visible = true
 	setclipboard("https://pastebin.com/6dTbNVck")
 end)
