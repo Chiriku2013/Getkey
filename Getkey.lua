@@ -18,15 +18,15 @@ keySystem.ResetOnSpawn = false
 
 local main = Instance.new("Frame", keySystem)
 main.Size = UDim2.new(0.3, 0, 0.35, 0)
-main.Position = UDim2.new(0.5, 0, 0, -200) -- Bắt đầu trên cao
+main.Position = UDim2.new(0.5, 0, 0.35, 0) -- vị trí ban đầu cao hơn trung tâm chút
 main.AnchorPoint = Vector2.new(0.5, 0.5)
 main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 main.BorderSizePixel = 0
 Instance.new("UICorner", main).CornerRadius = UDim.new(0, 10)
 
--- Animation hiện ra (trượt xuống)
+-- Animation hiện ra (trượt xuống mượt)
 TweenService:Create(main, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-    Position = UDim2.new(0.5, 0, 0.5, 0)
+    Position = UDim2.new(0.5, 0, 0.48, 0)
 }):Play()
 
 -- Title
@@ -93,7 +93,7 @@ keyLabel.TextSize = 14
 keyLabel.Font = Enum.Font.SourceSans
 keyLabel.Visible = false
 
--- Hover animation (màu)
+-- Hover animation
 for _, btn in pairs({getKeyBtn, checkBtn}) do
 	btn.MouseEnter:Connect(function()
 		TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundTransparency = 0.1}):Play()
@@ -123,8 +123,6 @@ checkBtn.MouseButton1Click:Connect(function()
 			Text = "Hãy get key lại",
 			Duration = 5
 		})
-
-		-- Rung nhẹ
 		local originalPos = main.Position
 		local shake = TweenInfo.new(0.1, Enum.EasingStyle.Linear)
 		TweenService:Create(main, shake, {Position = originalPos + UDim2.new(0, -10, 0, 0)}):Play()
