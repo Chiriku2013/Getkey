@@ -1,27 +1,33 @@
---// UI Get Key (Trung tâm màn hình)
+--// Dịch vụ
 local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
 local StarterGui = game:GetService("StarterGui")
 local player = Players.LocalPlayer
 
 -- Notify khi vào game
 StarterGui:SetCore("SendNotification", {
-    Title = "Vui lòng get key để sử dụng",
-    Text = "Không get key thì không dùng được đâu",
+    Title = "Get Key",
+    Text = "Get key để sử dụng",
     Duration = 6
 })
 
--- Tạo UI
+--// UI
 local keySystem = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
 keySystem.Name = "KeySystem"
 keySystem.ResetOnSpawn = false
 
 local main = Instance.new("Frame", keySystem)
 main.Size = UDim2.new(0.3, 0, 0.35, 0)
-main.Position = UDim2.new(0.5, 0, 0.5, 0)
+main.Position = UDim2.new(0.5, 0, 0, -200) -- Bắt đầu trên cao
 main.AnchorPoint = Vector2.new(0.5, 0.5)
 main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 main.BorderSizePixel = 0
 Instance.new("UICorner", main).CornerRadius = UDim.new(0, 10)
+
+-- Animation hiện ra (trượt xuống)
+TweenService:Create(main, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+    Position = UDim2.new(0.5, 0, 0.5, 0)
+}):Play()
 
 -- Title
 local title = Instance.new("TextLabel", main)
@@ -76,7 +82,7 @@ checkBtn.TextSize = 16
 checkBtn.Font = Enum.Font.SourceSansBold
 Instance.new("UICorner", checkBtn)
 
--- Label hiện sau khi bấm Get Key
+-- Label hiện dưới
 local keyLabel = Instance.new("TextLabel", main)
 keyLabel.Text = ""
 keyLabel.Size = UDim2.new(1, -20, 0, 20)
@@ -86,6 +92,16 @@ keyLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyLabel.TextSize = 14
 keyLabel.Font = Enum.Font.SourceSans
 keyLabel.Visible = false
+
+-- Hover animation (màu)
+for _, btn in pairs({getKeyBtn, checkBtn}) do
+	btn.MouseEnter:Connect(function()
+		TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundTransparency = 0.1}):Play()
+	end)
+	btn.MouseLeave:Connect(function()
+		TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundTransparency = 0}):Play()
+	end)
+end
 
 -- Key đúng
 local correctKey = "ChirikuNigga"
@@ -100,17 +116,26 @@ checkBtn.MouseButton1Click:Connect(function()
 			Duration = 5
 		})
 		main:Destroy()
-		loadstring("print('Chạy script chính tại đây')")()
+		loadstring("print('Chạy script chính ở đây')")()
 	else
 		StarterGui:SetCore("SendNotification", {
 			Title = "Key sai",
 			Text = "Hãy get key lại",
 			Duration = 5
 		})
+
+		-- Rung nhẹ
+		local originalPos = main.Position
+		local shake = TweenInfo.new(0.1, Enum.EasingStyle.Linear)
+		TweenService:Create(main, shake, {Position = originalPos + UDim2.new(0, -10, 0, 0)}):Play()
+		wait(0.05)
+		TweenService:Create(main, shake, {Position = originalPos + UDim2.new(0, 10, 0, 0)}):Play()
+		wait(0.05)
+		TweenService:Create(main, shake, {Position = originalPos}):Play()
 	end
 end)
 
--- Get Key (copy link)
+-- Get Key
 getKeyBtn.MouseButton1Click:Connect(function()
 	keyLabel.Text = "Link đã được copy!"
 	keyLabel.Visible = true
