@@ -18,15 +18,15 @@ keySystem.ResetOnSpawn = false
 
 local main = Instance.new("Frame", keySystem)
 main.Size = UDim2.new(0.3, 0, 0.35, 0)
-main.Position = UDim2.new(0.5, 0, 0.35, 0)
+main.Position = UDim2.new(0.5, 0, 0.42, 0)
 main.AnchorPoint = Vector2.new(0.5, 0.5)
 main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 main.BorderSizePixel = 0
 Instance.new("UICorner", main).CornerRadius = UDim.new(0, 10)
 
--- Tween trượt xuống mượt
+-- Tween hiện ra mượt
 TweenService:Create(main, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-    Position = UDim2.new(0.5, 0, 0.48, 0)
+    Position = UDim2.new(0.5, 0, 0.55, 0)
 }):Play()
 
 -- Title
@@ -82,7 +82,7 @@ checkBtn.TextSize = 16
 checkBtn.Font = Enum.Font.SourceSansBold
 Instance.new("UICorner", checkBtn)
 
--- Label hiện thông báo copy
+-- Label hiện dưới
 local keyLabel = Instance.new("TextLabel", main)
 keyLabel.Text = ""
 keyLabel.Size = UDim2.new(1, -20, 0, 20)
@@ -107,7 +107,11 @@ end
 local correctKey = "ChirikuNigga"
 
 -- Check Key
+local debounce = false
 checkBtn.MouseButton1Click:Connect(function()
+	if debounce then return end
+	debounce = true
+
 	local userKey = keyBox.Text
 	if userKey == correctKey then
 		StarterGui:SetCore("SendNotification", {
@@ -123,17 +127,16 @@ checkBtn.MouseButton1Click:Connect(function()
 			Text = "Hãy get key lại",
 			Duration = 5
 		})
-		local originalPos = main.Position
-		local function shakeUI()
-			local t1 = TweenService:Create(main, TweenInfo.new(0.05), {Position = originalPos + UDim2.new(0, -10, 0, 0)})
-			local t2 = TweenService:Create(main, TweenInfo.new(0.05), {Position = originalPos + UDim2.new(0, 10, 0, 0)})
-			local t3 = TweenService:Create(main, TweenInfo.new(0.05), {Position = originalPos})
-			t1:Play() t1.Completed:Wait()
-			t2:Play() t2.Completed:Wait()
-			t3:Play()
-		end
-		shakeUI()
+		local shake1 = TweenService:Create(main, TweenInfo.new(0.05), {Position = main.Position + UDim2.new(0, -10, 0, 0)})
+		local shake2 = TweenService:Create(main, TweenInfo.new(0.05), {Position = main.Position + UDim2.new(0, 10, 0, 0)})
+		local resetPos = TweenService:Create(main, TweenInfo.new(0.05), {Position = main.Position})
+		shake1:Play()
+		shake1.Completed:Wait()
+		shake2:Play()
+		shake2.Completed:Wait()
+		resetPos:Play()
 	end
+	debounce = false
 end)
 
 -- Get Key
