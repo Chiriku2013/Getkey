@@ -17,8 +17,8 @@ gui.ResetOnSpawn = false
 
 -- Nền chính
 local main = Instance.new("Frame", gui)
-main.Size = UDim2.new(0, 350, 0, 180)
-main.Position = UDim2.new(0.5, 0, 0.5, 20)
+main.Size = UDim2.new(0, 350, 0, 240)  -- Đặt lại kích thước phù hợp
+main.Position = UDim2.new(0.5, -175, 0.5, -120)  -- Đặt chính giữa màn hình
 main.AnchorPoint = Vector2.new(0.5, 0.5)
 main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 main.BorderSizePixel = 0
@@ -28,8 +28,8 @@ Instance.new("UICorner", main)
 local getKeyBtn = Instance.new("TextButton", main)
 getKeyBtn.Text = "Get Key"
 getKeyBtn.Size = UDim2.new(0, 120, 0, 35)
-getKeyBtn.Position = UDim2.new(0.5, -125, 0.5, -50)
-getKeyBtn.AnchorPoint = Vector2.new(0.5, 1)
+getKeyBtn.Position = UDim2.new(0.5, -125, 0, 130)  -- Di chuyển xuống dưới TextBox
+getKeyBtn.AnchorPoint = Vector2.new(0.5, 0)
 getKeyBtn.BackgroundColor3 = Color3.fromRGB(0, 140, 255)
 getKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 getKeyBtn.Font = Enum.Font.SourceSansBold
@@ -40,8 +40,8 @@ Instance.new("UICorner", getKeyBtn)
 local checkBtn = Instance.new("TextButton", main)
 checkBtn.Text = "Check Key"
 checkBtn.Size = UDim2.new(0, 120, 0, 35)
-checkBtn.Position = UDim2.new(0.5, 125, 0.5, -50)
-checkBtn.AnchorPoint = Vector2.new(0.5, 1)
+checkBtn.Position = UDim2.new(0.5, -125, 0, 170)  -- Di chuyển xuống dưới getKeyBtn
+checkBtn.AnchorPoint = Vector2.new(0.5, 0)
 checkBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
 checkBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 checkBtn.Font = Enum.Font.SourceSansBold
@@ -61,23 +61,23 @@ title.AnchorPoint = Vector2.new(0.5, 0)
 
 -- Left ImageLabel
 local leftImage = Instance.new("ImageLabel", main)
-leftImage.Size = UDim2.new(0, 50, 0, 50)  -- Size đã được tăng
+leftImage.Size = UDim2.new(0, 50, 0, 50)  -- Kích thước lớn
 leftImage.Position = UDim2.new(0, 5, 0, 5)
-leftImage.Image = "rbxassetid://119198835819797" -- Đã thay thế ID hình ảnh
+leftImage.Image = "rbxassetid://119198835819797"  -- Đã thay thế ID hình ảnh
 leftImage.BackgroundTransparency = 1
 
 -- Right ImageLabel
 local rightImage = Instance.new("ImageLabel", main)
-rightImage.Size = UDim2.new(0, 50, 0, 50)  -- Size đã được tăng
+rightImage.Size = UDim2.new(0, 50, 0, 50)  -- Kích thước lớn
 rightImage.Position = UDim2.new(1, -55, 0, 5)
-rightImage.Image = "rbxassetid://119198835819797" -- Đã thay thế ID hình ảnh
+rightImage.Image = "rbxassetid://119198835819797"  -- Đã thay thế ID hình ảnh
 rightImage.BackgroundTransparency = 1
 
 -- Info
 local info = Instance.new("TextLabel", main)
 info.Text = "Get your key at:\nhttps://pastebin.com/6dTbNVck"
 info.Size = UDim2.new(1, -20, 0, 40)
-info.Position = UDim2.new(0, 10, 0, 30)
+info.Position = UDim2.new(0, 10, 0, 40)  -- Điều chỉnh vị trí
 info.BackgroundTransparency = 1
 info.TextColor3 = Color3.fromRGB(200, 200, 200)
 info.Font = Enum.Font.SourceSans
@@ -88,7 +88,7 @@ info.TextWrapped = true
 local keyBox = Instance.new("TextBox", main)
 keyBox.PlaceholderText = "Enter your key here"
 keyBox.Size = UDim2.new(1, -20, 0, 30)
-keyBox.Position = UDim2.new(0, 10, 0, 80)
+keyBox.Position = UDim2.new(0, 10, 0, 80)  -- Di chuyển lên một chút
 keyBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 keyBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyBox.TextSize = 16
@@ -99,14 +99,14 @@ Instance.new("UICorner", keyBox)
 local keyLabel = Instance.new("TextLabel", main)
 keyLabel.Text = ""
 keyLabel.Size = UDim2.new(1, -20, 0, 20)
-keyLabel.Position = UDim2.new(0, 10, 0, 120)
+keyLabel.Position = UDim2.new(0, 10, 0, 110)  -- Di chuyển lên gần TextBox hơn
 keyLabel.BackgroundTransparency = 1
 keyLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyLabel.TextSize = 14
 keyLabel.Font = Enum.Font.SourceSans
 keyLabel.Visible = false
 
--- Hover
+-- Hover effect cho các nút
 for _, btn in pairs({getKeyBtn, checkBtn}) do
 	btn.MouseEnter:Connect(function()
 		TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundTransparency = 0.1}):Play()
