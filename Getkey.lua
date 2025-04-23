@@ -17,36 +17,12 @@ gui.ResetOnSpawn = false
 
 -- Nền chính
 local main = Instance.new("Frame", gui)
-main.Size = UDim2.new(0, 350, 0, 240)  -- Đặt lại kích thước phù hợp
+main.Size = UDim2.new(0, 350, 0, 240)  -- Kích thước phù hợp
 main.Position = UDim2.new(0.5, -175, 0.5, -120)  -- Đặt chính giữa màn hình
 main.AnchorPoint = Vector2.new(0.5, 0.5)
 main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 main.BorderSizePixel = 0
 Instance.new("UICorner", main)
-
--- Nút Get Key
-local getKeyBtn = Instance.new("TextButton", main)
-getKeyBtn.Text = "Get Key"
-getKeyBtn.Size = UDim2.new(0, 120, 0, 35)
-getKeyBtn.Position = UDim2.new(0.5, -125, 0, 130)  -- Di chuyển xuống dưới TextBox
-getKeyBtn.AnchorPoint = Vector2.new(0.5, 0)
-getKeyBtn.BackgroundColor3 = Color3.fromRGB(0, 140, 255)
-getKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-getKeyBtn.Font = Enum.Font.SourceSansBold
-getKeyBtn.TextSize = 16
-Instance.new("UICorner", getKeyBtn)
-
--- Nút Check Key
-local checkBtn = Instance.new("TextButton", main)
-checkBtn.Text = "Check Key"
-checkBtn.Size = UDim2.new(0, 120, 0, 35)
-checkBtn.Position = UDim2.new(0.5, -125, 0, 170)  -- Di chuyển xuống dưới getKeyBtn
-checkBtn.AnchorPoint = Vector2.new(0.5, 0)
-checkBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
-checkBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-checkBtn.Font = Enum.Font.SourceSansBold
-checkBtn.TextSize = 16
-Instance.new("UICorner", checkBtn)
 
 -- Title
 local title = Instance.new("TextLabel", main)
@@ -105,6 +81,30 @@ keyLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 keyLabel.TextSize = 14
 keyLabel.Font = Enum.Font.SourceSans
 keyLabel.Visible = false
+
+-- Nút Get Key (Bên trái)
+local getKeyBtn = Instance.new("TextButton", main)
+getKeyBtn.Text = "Get Key"
+getKeyBtn.Size = UDim2.new(0, 120, 0, 35)
+getKeyBtn.Position = UDim2.new(0, 10, 0, 140)  -- Nằm dưới TextBox bên trái
+getKeyBtn.AnchorPoint = Vector2.new(0, 0)
+getKeyBtn.BackgroundColor3 = Color3.fromRGB(0, 140, 255)
+getKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+getKeyBtn.Font = Enum.Font.SourceSansBold
+getKeyBtn.TextSize = 16
+Instance.new("UICorner", getKeyBtn)
+
+-- Nút Check Key (Bên phải)
+local checkBtn = Instance.new("TextButton", main)
+checkBtn.Text = "Check Key"
+checkBtn.Size = UDim2.new(0, 120, 0, 35)
+checkBtn.Position = UDim2.new(1, -130, 0, 140)  -- Nằm dưới TextBox bên phải
+checkBtn.AnchorPoint = Vector2.new(1, 0)
+checkBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+checkBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+checkBtn.Font = Enum.Font.SourceSansBold
+checkBtn.TextSize = 16
+Instance.new("UICorner", checkBtn)
 
 -- Hover effect cho các nút
 for _, btn in pairs({getKeyBtn, checkBtn}) do
