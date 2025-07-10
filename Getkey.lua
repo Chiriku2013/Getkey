@@ -40,14 +40,14 @@ title.AnchorPoint = Vector2.new(0.5, 0)
 local leftImage = Instance.new("ImageLabel", main)
 leftImage.Size = UDim2.new(0, 50, 0, 50)
 leftImage.Position = UDim2.new(0, 5, 0, 5)
-leftImage.Image = "rbxassetid://119198835819797"
+leftImage.Image = "rbxassetid://119836305527028"
 leftImage.BackgroundTransparency = 1
 
 -- Image phải
 local rightImage = Instance.new("ImageLabel", main)
 rightImage.Size = UDim2.new(0, 50, 0, 50)
 rightImage.Position = UDim2.new(1, -55, 0, 5)
-rightImage.Image = "rbxassetid://119198835819797"
+rightImage.Image = "rbxassetid://119836305527028"
 rightImage.BackgroundTransparency = 1
 
 -- Info
@@ -127,7 +127,7 @@ checkBtn.MouseButton1Click:Connect(function()
 		StarterGui:SetCore("SendNotification", {
 			Title = "Key Correct",
 			Text = "Thanks for Get Key!",
-                        Icon = " rbxassetid://81787064714217",
+                        Icon = "rbxassetid://81787064714217",
 			Duration = 5
 		})
 		_G.KeyCorrect = true
