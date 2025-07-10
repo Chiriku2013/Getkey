@@ -52,7 +52,7 @@ rightImage.BackgroundTransparency = 1
 
 -- Info
 local info = Instance.new("TextLabel", main)
-info.Text = "Get your key at:\nbutton Check Key"
+info.Text = "Get your key at button Get Key"
 info.Size = UDim2.new(1, -20, 0, 40)
 info.Position = UDim2.new(0, 10, 0, 40)
 info.BackgroundTransparency = 1
@@ -136,7 +136,7 @@ checkBtn.MouseButton1Click:Connect(function()
 		StarterGui:SetCore("SendNotification", {
 			Title = "Key Wrong",
 			Text = "Check again!",
-                        Icon = " rbxassetid://81787064714217",
+                        Icon = "rbxassetid://81787064714217",
 			Duration = 5
 		})
 
