@@ -6,7 +6,8 @@ local player = Players.LocalPlayer
 
 StarterGui:SetCore("SendNotification", {
     Title = "Get Key",
-    Text = "Get key để sử dụng",
+    Text = "Get key to use!",
+    Icon = "rbxassetid://81787064714217",
     Duration = 6
 })
 
@@ -51,7 +52,7 @@ rightImage.BackgroundTransparency = 1
 
 -- Info
 local info = Instance.new("TextLabel", main)
-info.Text = "Get your key at:\nhttps://pastebin.com/6dTbNVck"
+info.Text = "Get your key at:\nbutton Check Key"
 info.Size = UDim2.new(1, -20, 0, 40)
 info.Position = UDim2.new(0, 10, 0, 40)
 info.BackgroundTransparency = 1
@@ -124,16 +125,18 @@ checkBtn.MouseButton1Click:Connect(function()
 
 	if keyBox.Text == correctKey then
 		StarterGui:SetCore("SendNotification", {
-			Title = "Key đúng",
-			Text = "Cảm ơn vì đã get key!",
+			Title = "Key Correct",
+			Text = "Thanks for Get Key!",
+                        Icon = " rbxassetid://81787064714217",
 			Duration = 5
 		})
 		_G.KeyCorrect = true
 		gui:Destroy()
 	else
 		StarterGui:SetCore("SendNotification", {
-			Title = "Key sai",
-			Text = "Vui lòng kiểm tra lại!",
+			Title = "Key Wrong",
+			Text = "Check again!",
+                        Icon = " rbxassetid://81787064714217",
 			Duration = 5
 		})
 
@@ -152,7 +155,7 @@ checkBtn.MouseButton1Click:Connect(function()
 end)
 
 getKeyBtn.MouseButton1Click:Connect(function()
-	keyLabel.Text = "Link đã copy!"
+	keyLabel.Text = "Link copied!"
 	keyLabel.Visible = true
-	setclipboard("https://pastebin.com/6dTbNVck")
+	setclipboard("https://linkvertise.com/1369557/Pywfm6bPHwlh?o=sharing")
 end)
