@@ -128,8 +128,8 @@ checkBtn.MouseButton1Click:Connect(function()
 			Text = "Cảm ơn vì đã get key!",
 			Duration = 5
 		})
+		_G.KeyCorrect = true
 		gui:Destroy()
-		loadstring("print('Chạy script chính ở đây')")()
 	else
 		StarterGui:SetCore("SendNotification", {
 			Title = "Key sai",
